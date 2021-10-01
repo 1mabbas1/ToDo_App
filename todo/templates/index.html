@@ -1,0 +1,62 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List </title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+</head>
+<body>
+  <div class="wrapper">
+    <header>To Do List</header>
+
+    <form action="/add", method = "post">
+    <div class="inputField">
+      <input type="text" name="title" placeholder="Add your new todo" required>
+      <button type="submit" class="fas fa-plus"></button>
+
+    </div>
+    </form>
+
+
+    <ul class="todoList">
+      <!-- data are comes from local storage -->
+        {% for todo in todolist %}
+        <div class="container"
+        <p> {{ todo.id }}) {{todo.title }}</p>
+
+        {% if todo.complete == False %}
+        <span>Incomplete</span>
+
+        <a href="/edit/{{ todo.id }}"><i class="fas fa-check"></i></a>
+        <a href="/delete/{{ todo.id }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+      <p>
+.
+      </p>
+      <hr>
+        {% else %}
+        <span>Complete</span>
+        <a href="/edit/{{ todo.id }}"><i class="fas fa-check"></i></a>
+        <a href="/delete/{{ todo.id }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+        <p>
+         .
+        </p>
+        <hr>
+        {% endif %}
+        </div>
+        {% endfor %}
+
+
+    </ul>
+    <div class="footer">
+      <span>You have <span class="pendingTasks"></span>{{ left }} pending tasks</span>
+      <a href="/clearall" style="text-decoration: none;">Clear All</a>
+
+    </div>
+  </div>
+
+
+</body>
+</html>
